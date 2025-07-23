@@ -1,0 +1,59 @@
+
+services:
+  api:
+    build: ./backend/api
+    container_name: agenteia_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/api:/app
+    environment:
+      - ENV=development
+      - ODOO_HOST=${ODOO_HOST}
+      - ODOO_PORT=${ODOO_PORT}
+      - ODOO_DB=${ODOO_DB}
+      - ODOO_USER=${ODOO_USER}
+      - ODOO_PASSWORD=${ODOO_PASSWORD}
+    env_file:
+      - .env
+    depends_on:
+      - redis
+
+  frontend:
+    build: ./frontend
+    container_name: agenteia_frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+    environment:
+      - ENV=development
+    depends_on: []
+
+  # Servicio OCR
+  ocr:
+    build: ./backend/ocr
+    container_name: agenteia_ocr
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./backend/ocr:/app
+    environment:
+      - ENV=development
+    depends_on: []
+
+  # Redis para caché
+  redis:
+    image: redis:7-alpine
+    container_name: agenteia_redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  redis_data:
+
+# Servicios futuros:
+#   ocr:
+#   ia: 
