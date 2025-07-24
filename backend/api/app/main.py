@@ -4,6 +4,21 @@ from typing import Optional
 from app.services.odoo_service import get_products, get_inventory_movements, get_purchase_orders, get_sales_orders, get_partners
 
 app = FastAPI(title="Vidafarma_IA API", version="1.0.0")
+from .auth import verify_firebase_token
+
+@app.get("/api/protegido")
+def endpoint_protegido(user=Depends(verify_firebase_token)):
+    return {"msg": f"Hola {user['email']}"}
+
+origins = [
+    "https://TUDOMINIO.firebaseapp.com",
+    "https://TUDOMINIO.web.app"
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    ...
+)
 
 # Modelos Pydantic para validación
 class ConsultaIA(BaseModel):
