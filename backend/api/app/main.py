@@ -3,6 +3,21 @@ from pydantic import BaseModel
 from typing import Optional
 from app.services.odoo_service import get_products, get_inventory_movements, get_purchase_orders, get_sales_orders, get_partners
 
+from fastapi.middleware.cors import CORSMiddleware
+
+origins = [
+    "https://TU_DOMINIO_FIREBASE",  # tu dominio de Firebase Hosting
+    "http://localhost:3000",         # para desarrollo local
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app = FastAPI(title="Vidafarma_IA API", version="1.0.0")
 from .auth import verify_firebase_token
 
