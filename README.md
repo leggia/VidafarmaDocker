@@ -1,59 +1,105 @@
 # Vidafarma_IA (agente-ia)
 
-Plataforma inteligente para la gestión de farmacias, con agente IA, automatización de tareas, integración OCR y conexión con Odoo.
+Plataforma inteligente para la gestión de farmacias, impulsada por un agente de IA conversacional. Permite la automatización de tareas, consultas de inventario y precios mediante voz, y utiliza la cámara del móvil como un escáner de códigos de barras integrado con Odoo.
 
-## Estructura del monorepo
+## Arquitectura General
 
-```
-Vidafarma_IA/
-├── backend/      # Microservicios (api, ocr, odoo, ia)
-├── frontend/     # PWA (React) con soporte de voz
-├── odoo/         # Configuración y addons de Odoo
-├── scripts/      # Scripts de inicialización
-├── docs/         # Documentación adicional
-├── docker-compose.yml
-├── README.md
-└── .gitignore
-```
-
-- Documentación detallada en `/docs` y en los README.md de cada microservicio.
-- Cada microservicio y el frontend tienen su propio README.md y Dockerfile.
+- **Monorepo:** Estructura centralizada para facilitar el desarrollo y despliegue.
+- **Microservicios:** Cada funcionalidad clave (API, OCR, IA) está aislada en su propio contenedor Docker.
+- **Orquestación:** `docker-compose.yml` para gestionar los servicios en desarrollo.
+- **Conexión a Odoo:** El sistema se integra con un **servicio externo de Odoo (v18+)** a través de su API XML-RPC, actuando como un cliente inteligente.
 
 ---
 
-## Microservicios principales
-- **api:** FastAPI, lógica de negocio, integración IA, endpoints para frontend.
-- **odoo:** Integración con Odoo 18 Community (instancia remota en la nube).
-- **redis:** Caché para optimizar consultas a Odoo.
-- **ocr:** Reconocimiento de texto en facturas (PDF/foto) - futuro.
-- **ia:** Microservicio IA (futuro, GPU/nube).
+## Componentes Principales
 
-## Frontend
-- PWA (React) con soporte para cámara, micrófono y consultas por voz.
+- **Frontend (`/frontend`):**
+  - Una **Progressive Web App (PWA)** construida con React.
+  - **Interfaz conversacional:** Permite a los usuarios interactuar con la IA mediante voz y texto.
+  - **Escáner de código de barras:** Utiliza la cámara del dispositivo móvil para leer códigos de barras y consultar productos en Odoo.
+  - **Soporte offline:** (Futuro) Capacidades básicas sin conexión.
 
-## Inicio Rápido
+- **Backend (`/backend`):**
+  - **API Principal (`/api`):**
+    - Construida con **FastAPI**.
+    - Gestiona la lógica de negocio y la autenticación.
+    - Procesa las intenciones del usuario (ej: "cuál es el precio de X", "actualiza el stock de Y").
+    - Se comunica con el servicio externo de Odoo.
+  - **Servicio de Odoo (`/api/services/odoo_service.py`):**
+    - Cliente XML-RPC para leer y escribir datos en la instancia de Odoo.
+    - Cache con **Redis** para optimizar las consultas.
+  - **Servicio de OCR (`/ocr`):** (Futuro) Microservicio para extraer texto de documentos (facturas, recetas).
+
+## Inicio Rápido (Desarrollo Local)
 
 ### Prerrequisitos
-- Docker y Docker Compose instalados
+- Docker y Docker Compose
 - Git
+- Un archivo `.env` configurado a partir de `env.example` con las credenciales de tu servicio de Odoo.
 
-### Configuración Inicial
-1. Clona el repositorio
-2. Ejecuta el script de inicialización:
+### Pasos
+1. **Clonar el repositorio:**
    ```bash
-   # Linux/Mac
-   chmod +x scripts/init-odoo.sh
-   ./scripts/init-odoo.sh
-   
-   # Windows (PowerShell)
-   .\scripts\init-odoo.ps1
+   git clone <URL_DEL_REPO>
+   cd VidafarmaDocker
    ```
+2. **Configurar variables de entorno:**
+   ```bash
+   cp env.example .env
+   # Edita el archivo .env con tus credenciales de Odoo y otras configuraciones
+   ```
+3. **Levantar los servicios:**
+   ```bash
+   docker-compose up --build
+   ```
+4. **Acceder a los servicios:**
+   - **Frontend:** `http://localhost:3000`
+   - **API Docs:** `http://localhost:8000/docs`
 
-3. Accede a los servicios:
-   - **API:** http://localhost:8000/docs
-   - **Frontend:** http://localhost:3000
-   - **Odoo:** Tu instancia remota (configurada en .env)
+---
+
+## Despliegue en Google Cloud (Capa Gratuita)
+
+Esta aplicación está diseñada para desplegarse de forma rentable en la capa gratuita de Google Cloud:
+
+- **Frontend (React PWA):** Se despliega en **Firebase Hosting** para obtener un CDN global, SSL automático y un rendimiento excelente sin coste inicial.
+- **Backend (Microservicios FastAPI):** Cada microservicio se empaqueta como un contenedor Docker y se despliega en **Google Cloud Run**, un entorno serverless que escala a cero, por lo que solo pagas por el uso real.
+
+### Pasos para el Despliegue
+
+1.  **Configurar Google Cloud y Firebase:**
+    - Crea un proyecto en [Google Cloud Console](https://console.cloud.google.com/).
+    - Instala la [CLI de `gcloud`](https://cloud.google.com/sdk/docs/install).
+    - Instala la [CLI de Firebase](https://firebase.google.com/docs/cli#install_the_firebase_cli) (`npm install -g firebase-tools`).
+    - Asocia tu proyecto local con Firebase: `firebase use --add` y selecciona tu proyecto.
+
+2.  **Desplegar el Backend (API) en Cloud Run:**
+    - Navega al directorio del microservicio (ej: `cd backend/api`).
+    - Construye y sube la imagen del contenedor a Google Container Registry:
+      ```bash
+      gcloud builds submit --tag gcr.io/<TU_ID_DE_PROYECTO>/vidafarma-api
+      ```
+    - Despliega la imagen en Cloud Run:
+      ```bash
+      gcloud run deploy vidafarma-api --image gcr.io/<TU_ID_DE_PROYECTO>/vidafarma-api --platform managed --region <TU_REGION> --allow-unauthenticated
+      ```
+    - **Nota:** Deberás configurar las variables de entorno de Odoo como "secrets" en Cloud Run para mayor seguridad.
+
+3.  **Desplegar el Frontend en Firebase Hosting:**
+    - Navega al directorio del frontend: `cd frontend`.
+    - Construye la aplicación de React para producción:
+      ```bash
+      npm install
+      npm run build
+      ```
+    - Despliega en Firebase:
+      ```bash
+      firebase deploy --only hosting
+      ```
+
+Tras el despliegue, tendrás la URL de tu frontend en Firebase y la URL de tu backend en Cloud Run. Deberás configurar la variable de entorno `REACT_APP_API_BASE_URL` en tu proyecto de Firebase para que apunte a la URL de Cloud Run.
 
 ## Documentación
-- Ver `/docs` para decisiones técnicas, diagramas y guías de uso.
-- Ver `/odoo/README.md` para configuración específica de Odoo. 
+- **Decisiones Técnicas:** `/docs/decisiones-tecnicas.md`
+- **Guía de Desarrollo:** `/docs/guia-desarrollo.md`
+- **Seguimiento del Proyecto:** `/seguimiento.md`

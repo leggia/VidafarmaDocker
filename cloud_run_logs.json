@@ -1,0 +1,2703 @@
+[
+  {
+    "insertId": "ben9krd3y64",
+    "logName": "projects/vidafarma-ia25/logs/cloudaudit.googleapis.com%2Fsystem_event",
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "methodName": "/Services.ReplaceService",
+      "resourceName": "namespaces/vidafarma-ia25/services/vidafarma-api",
+      "response": {
+        "@type": "type.googleapis.com/google.cloud.run.v1.Service",
+        "apiVersion": "serving.knative.dev/v1",
+        "kind": "Service",
+        "metadata": {
+          "annotations": {
+            "run.googleapis.com/build-enable-automatic-updates": "false",
+            "run.googleapis.com/build-id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+            "run.googleapis.com/build-image-uri": "southamerica-east1-docker.pkg.dev/vidafarma-ia25/cloud-run-source-deploy/vidafarma-api",
+            "run.googleapis.com/build-name": "projects/963566180194/locations/southamerica-east1/builds/e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+            "run.googleapis.com/build-source-location": "gs://run-sources-vidafarma-ia25-southamerica-east1/services/vidafarma-api/1754524653.707603-a38a5e4d515648269da00649e5a0fc2c.zip#1754524654895380",
+            "run.googleapis.com/client-name": "gcloud",
+            "run.googleapis.com/client-version": "532.0.0",
+            "run.googleapis.com/ingress": "all",
+            "run.googleapis.com/ingress-status": "all",
+            "run.googleapis.com/operation-id": "b8496549-f2df-41d1-89e3-8747aebb6fac",
+            "run.googleapis.com/urls": "[\"https://vidafarma-api-963566180194.southamerica-east1.run.app\",\"https://vidafarma-api-pu7gdmhp7a-rj.a.run.app\"]",
+            "serving.knative.dev/creator": "luisomar07@gmail.com",
+            "serving.knative.dev/lastModifier": "luisomar07@gmail.com"
+          },
+          "creationTimestamp": "2025-08-01T23:38:57.165933Z",
+          "generation": 28,
+          "labels": {
+            "cloud.googleapis.com/location": "southamerica-east1",
+            "run.googleapis.com/satisfiesPzs": "true"
+          },
+          "name": "vidafarma-api",
+          "namespace": "963566180194",
+          "resourceVersion": "AAY7ux4BEhU",
+          "selfLink": "/apis/serving.knative.dev/v1/namespaces/963566180194/services/vidafarma-api",
+          "uid": "923e13b3-4a5d-4dce-9f26-f66675f9d95c"
+        },
+        "spec": {
+          "template": {
+            "metadata": {
+              "annotations": {
+                "autoscaling.knative.dev/maxScale": "3",
+                "run.googleapis.com/client-name": "gcloud",
+                "run.googleapis.com/client-version": "532.0.0",
+                "run.googleapis.com/startup-cpu-boost": "true"
+              },
+              "labels": {
+                "client.knative.dev/nonce": "vsvrdgkuce",
+                "run.googleapis.com/startupProbeType": "Default"
+              }
+            },
+            "spec": {
+              "containerConcurrency": 80,
+              "containers": [
+                {
+                  "env": [
+                    {
+                      "name": "ODOO_HOST",
+                      "valueFrom": {
+                        "secretKeyRef": {
+                          "key": "latest",
+                          "name": "ODOO_HOST"
+                        }
+                      }
+                    },
+                    {
+                      "name": "ODOO_PORT",
+                      "valueFrom": {
+                        "secretKeyRef": {
+                          "key": "latest",
+                          "name": "ODOO_PORT"
+                        }
+                      }
+                    },
+                    {
+                      "name": "ODOO_DB",
+                      "valueFrom": {
+                        "secretKeyRef": {
+                          "key": "latest",
+                          "name": "ODOO_DB"
+                        }
+                      }
+                    },
+                    {
+                      "name": "ODOO_USER",
+                      "valueFrom": {
+                        "secretKeyRef": {
+                          "key": "latest",
+                          "name": "ODOO_USER"
+                        }
+                      }
+                    },
+                    {
+                      "name": "ODOO_PASSWORD",
+                      "valueFrom": {
+                        "secretKeyRef": {
+                          "key": "latest",
+                          "name": "ODOO_PASSWORD"
+                        }
+                      }
+                    },
+                    {
+                      "name": "FIREBASE_CLIENT_ID",
+                      "valueFrom": {
+                        "secretKeyRef": {
+                          "key": "latest",
+                          "name": "FIREBASE_CLIENT_ID"
+                        }
+                      }
+                    }
+                  ],
+                  "image": "southamerica-east1-docker.pkg.dev/vidafarma-ia25/cloud-run-source-deploy/vidafarma-api@sha256:737d3eb8a3d7f0c51c7d8144393d3a6e0c6a0da89cd238d64a4f4848d6c8cdb6",
+                  "ports": [
+                    {
+                      "containerPort": 8080,
+                      "name": "http1"
+                    }
+                  ],
+                  "resources": {
+                    "limits": {
+                      "cpu": "1000m",
+                      "memory": "512Mi"
+                    }
+                  },
+                  "startupProbe": {
+                    "failureThreshold": 1,
+                    "periodSeconds": 240,
+                    "tcpSocket": {
+                      "port": 8080
+                    },
+                    "timeoutSeconds": 240
+                  }
+                }
+              ],
+              "serviceAccountName": "963566180194-compute@developer.gserviceaccount.com",
+              "timeoutSeconds": 300
+            }
+          },
+          "traffic": [
+            {
+              "latestRevision": true,
+              "percent": 100
+            }
+          ]
+        },
+        "status": {
+          "address": {
+            "url": "https://vidafarma-api-pu7gdmhp7a-rj.a.run.app"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2025-08-06T23:58:28.573717Z",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2025-08-06T23:58:27.296080Z",
+              "status": "True",
+              "type": "ConfigurationsReady"
+            },
+            {
+              "lastTransitionTime": "2025-08-06T23:58:28.536588Z",
+              "status": "True",
+              "type": "RoutesReady"
+            }
+          ],
+          "latestCreatedRevisionName": "vidafarma-api-00028-rm4",
+          "latestReadyRevisionName": "vidafarma-api-00028-rm4",
+          "observedGeneration": 28,
+          "traffic": [
+            {
+              "latestRevision": true,
+              "percent": 100,
+              "revisionName": "vidafarma-api-00028-rm4"
+            }
+          ],
+          "url": "https://vidafarma-api-pu7gdmhp7a-rj.a.run.app"
+        }
+      },
+      "serviceName": "run.googleapis.com",
+      "status": {
+        "message": "Ready condition status changed to True for Service vidafarma-api."
+      }
+    },
+    "receiveTimestamp": "2025-08-06T23:58:28.934847522Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "",
+        "location": "southamerica-east1",
+        "project_id": "vidafarma-ia25",
+        "revision_name": "",
+        "service_name": "vidafarma-api"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "INFO",
+    "timestamp": "2025-08-06T23:58:28.588886Z"
+  },
+  {
+    "insertId": "r7171ld4qeg",
+    "logName": "projects/vidafarma-ia25/logs/cloudaudit.googleapis.com%2Fsystem_event",
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "methodName": "/Services.ReplaceService",
+      "resourceName": "namespaces/vidafarma-ia25/revisions/vidafarma-api-00028-rm4",
+      "response": {
+        "@type": "type.googleapis.com/google.cloud.run.v1.Revision",
+        "apiVersion": "serving.knative.dev/v1",
+        "kind": "Revision",
+        "metadata": {
+          "annotations": {
+            "autoscaling.knative.dev/maxScale": "3",
+            "run.googleapis.com/build-source-location": "{\"vidafarma-api-1\":\"gs://run-sources-vidafarma-ia25-southamerica-east1/services/vidafarma-api/1754524653.707603-a38a5e4d515648269da00649e5a0fc2c.zip#1754524654895380\"}",
+            "run.googleapis.com/client-name": "gcloud",
+            "run.googleapis.com/client-version": "532.0.0",
+            "run.googleapis.com/operation-id": "b8496549-f2df-41d1-89e3-8747aebb6fac",
+            "run.googleapis.com/startup-cpu-boost": "true",
+            "serving.knative.dev/creator": "luisomar07@gmail.com"
+          },
+          "creationTimestamp": "2025-08-06T23:58:18.391473Z",
+          "generation": 1,
+          "labels": {
+            "client.knative.dev/nonce": "vsvrdgkuce",
+            "cloud.googleapis.com/location": "southamerica-east1",
+            "run.googleapis.com/satisfiesPzs": "true",
+            "run.googleapis.com/startupProbeType": "Default",
+            "serving.knative.dev/configuration": "vidafarma-api",
+            "serving.knative.dev/configurationGeneration": "28",
+            "serving.knative.dev/route": "vidafarma-api",
+            "serving.knative.dev/service": "vidafarma-api",
+            "serving.knative.dev/serviceUid": "923e13b3-4a5d-4dce-9f26-f66675f9d95c"
+          },
+          "name": "vidafarma-api-00028-rm4",
+          "namespace": "963566180194",
+          "ownerReferences": [
+            {
+              "apiVersion": "serving.knative.dev/v1",
+              "blockOwnerDeletion": true,
+              "controller": true,
+              "kind": "Configuration",
+              "name": "vidafarma-api",
+              "uid": "a283e304-4e5a-4287-8b40-3d465a4ff244"
+            }
+          ],
+          "resourceVersion": "AAY7ux3s7Rc",
+          "selfLink": "/apis/serving.knative.dev/v1/namespaces/963566180194/revisions/vidafarma-api-00028-rm4",
+          "uid": "2c57ddda-3719-41d4-b0d9-9f13fc954430"
+        },
+        "spec": {
+          "containerConcurrency": 80,
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "ODOO_HOST",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "ODOO_HOST"
+                    }
+                  }
+                },
+                {
+                  "name": "ODOO_PORT",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "ODOO_PORT"
+                    }
+                  }
+                },
+                {
+                  "name": "ODOO_DB",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "ODOO_DB"
+                    }
+                  }
+                },
+                {
+                  "name": "ODOO_USER",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "ODOO_USER"
+                    }
+                  }
+                },
+                {
+                  "name": "ODOO_PASSWORD",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "ODOO_PASSWORD"
+                    }
+                  }
+                },
+                {
+                  "name": "FIREBASE_CLIENT_ID",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "FIREBASE_CLIENT_ID"
+                    }
+                  }
+                }
+              ],
+              "image": "southamerica-east1-docker.pkg.dev/vidafarma-ia25/cloud-run-source-deploy/vidafarma-api@sha256:737d3eb8a3d7f0c51c7d8144393d3a6e0c6a0da89cd238d64a4f4848d6c8cdb6",
+              "name": "vidafarma-api-1",
+              "ports": [
+                {
+                  "containerPort": 8080,
+                  "name": "http1"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "1000m",
+                  "memory": "512Mi"
+                }
+              },
+              "startupProbe": {
+                "failureThreshold": 1,
+                "periodSeconds": 240,
+                "tcpSocket": {
+                  "port": 8080
+                },
+                "timeoutSeconds": 240
+              }
+            }
+          ],
+          "serviceAccountName": "963566180194-compute@developer.gserviceaccount.com",
+          "timeoutSeconds": 300
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2025-08-06T23:58:27.253527Z",
+              "message": "Deploying revision succeeded in 8.86s.",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2025-08-06T23:58:27.193488Z",
+              "message": "Containers became healthy in 2.42s.",
+              "status": "True",
+              "type": "ContainerHealthy"
+            },
+            {
+              "lastTransitionTime": "2025-08-06T23:58:21.305363Z",
+              "message": "Container image import completed in 2.4s.",
+              "status": "True",
+              "type": "ContainerReady"
+            },
+            {
+              "lastTransitionTime": "2025-08-06T23:58:24.144046Z",
+              "message": "Provisioning imported containers completed in 2.84s. Checking container health. This will wait for up to 4m for the configured startup probe, including an initial delay of 0s.",
+              "status": "True",
+              "type": "ResourcesAvailable"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "imageDigest": "southamerica-east1-docker.pkg.dev/vidafarma-ia25/cloud-run-source-deploy/vidafarma-api@sha256:737d3eb8a3d7f0c51c7d8144393d3a6e0c6a0da89cd238d64a4f4848d6c8cdb6",
+              "name": "vidafarma-api-1"
+            }
+          ],
+          "imageDigest": "southamerica-east1-docker.pkg.dev/vidafarma-ia25/cloud-run-source-deploy/vidafarma-api@sha256:737d3eb8a3d7f0c51c7d8144393d3a6e0c6a0da89cd238d64a4f4848d6c8cdb6",
+          "logUrl": "https://console.cloud.google.com/logs/viewer?project=vidafarma-ia25&resource=cloud_run_revision/service_name/vidafarma-api/revision_name/vidafarma-api-00028-rm4&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22vidafarma-api%22%0Aresource.labels.revision_name%3D%22vidafarma-api-00028-rm4%22",
+          "observedGeneration": 1
+        }
+      },
+      "serviceName": "run.googleapis.com",
+      "status": {
+        "message": "Ready condition status changed to True for Revision vidafarma-api-00028-rm4 with message: Deploying revision succeeded in 8.86s."
+      }
+    },
+    "receiveTimestamp": "2025-08-06T23:58:27.851888212Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "vidafarma-api",
+        "location": "southamerica-east1",
+        "project_id": "vidafarma-ia25",
+        "revision_name": "vidafarma-api-00028-rm4",
+        "service_name": "vidafarma-api"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "INFO",
+    "timestamp": "2025-08-06T23:58:27.268507Z"
+  },
+  {
+    "insertId": "6893ec230002c758b9230102",
+    "labels": {
+      "instanceId": "0069c7a988bbc633c1e8fc21eda2f7e272afa167dc43f6b6a616fea6bd3fa9094e84046068130f755655eaad2da387c30d67a8680b1c17d8604b7eefd1b2391bd5acb3e6e9779e8a2a78663210ce"
+    },
+    "logName": "projects/vidafarma-ia25/logs/run.googleapis.com%2Fvarlog%2Fsystem",
+    "receiveTimestamp": "2025-08-06T23:58:27.184508591Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "vidafarma-api",
+        "location": "southamerica-east1",
+        "project_id": "vidafarma-ia25",
+        "revision_name": "vidafarma-api-00028-rm4",
+        "service_name": "vidafarma-api"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "INFO",
+    "textPayload": "Default STARTUP TCP probe succeeded after 1 attempt for container \"vidafarma-api-1\" on port 8080.",
+    "timestamp": "2025-08-06T23:58:27.182104Z"
+  },
+  {
+    "insertId": "6893ec230002c53e186a5ff4",
+    "labels": {
+      "instanceId": "0069c7a988bbc633c1e8fc21eda2f7e272afa167dc43f6b6a616fea6bd3fa9094e84046068130f755655eaad2da387c30d67a8680b1c17d8604b7eefd1b2391bd5acb3e6e9779e8a2a78663210ce"
+    },
+    "logName": "projects/vidafarma-ia25/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-08-06T23:58:27.516680035Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "vidafarma-api",
+        "location": "southamerica-east1",
+        "project_id": "vidafarma-ia25",
+        "revision_name": "vidafarma-api-00028-rm4",
+        "service_name": "vidafarma-api"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "INFO:     Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)",
+    "timestamp": "2025-08-06T23:58:27.181566Z"
+  },
+  {
+    "insertId": "6893ec230002c245ba4c9655",
+    "labels": {
+      "instanceId": "0069c7a988bbc633c1e8fc21eda2f7e272afa167dc43f6b6a616fea6bd3fa9094e84046068130f755655eaad2da387c30d67a8680b1c17d8604b7eefd1b2391bd5acb3e6e9779e8a2a78663210ce"
+    },
+    "logName": "projects/vidafarma-ia25/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-08-06T23:58:27.516680035Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "vidafarma-api",
+        "location": "southamerica-east1",
+        "project_id": "vidafarma-ia25",
+        "revision_name": "vidafarma-api-00028-rm4",
+        "service_name": "vidafarma-api"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "INFO:     Application startup complete.",
+    "timestamp": "2025-08-06T23:58:27.180805Z"
+  },
+  {
+    "insertId": "6893ec230002c11461096690",
+    "labels": {
+      "instanceId": "0069c7a988bbc633c1e8fc21eda2f7e272afa167dc43f6b6a616fea6bd3fa9094e84046068130f755655eaad2da387c30d67a8680b1c17d8604b7eefd1b2391bd5acb3e6e9779e8a2a78663210ce"
+    },
+    "logName": "projects/vidafarma-ia25/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-08-06T23:58:27.184104474Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "vidafarma-api",
+        "location": "southamerica-east1",
+        "project_id": "vidafarma-ia25",
+        "revision_name": "vidafarma-api-00028-rm4",
+        "service_name": "vidafarma-api"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "INFO:     Waiting for application startup.",
+    "timestamp": "2025-08-06T23:58:27.180500Z"
+  },
+  {
+    "insertId": "6893ec230002c0e7836a077e",
+    "labels": {
+      "instanceId": "0069c7a988bbc633c1e8fc21eda2f7e272afa167dc43f6b6a616fea6bd3fa9094e84046068130f755655eaad2da387c30d67a8680b1c17d8604b7eefd1b2391bd5acb3e6e9779e8a2a78663210ce"
+    },
+    "logName": "projects/vidafarma-ia25/logs/run.googleapis.com%2Fstderr",
+    "receiveTimestamp": "2025-08-06T23:58:27.184104474Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "vidafarma-api",
+        "location": "southamerica-east1",
+        "project_id": "vidafarma-ia25",
+        "revision_name": "vidafarma-api-00028-rm4",
+        "service_name": "vidafarma-api"
+      },
+      "type": "cloud_run_revision"
+    },
+    "textPayload": "INFO:     Started server process [2]",
+    "timestamp": "2025-08-06T23:58:27.180455Z"
+  },
+  {
+    "insertId": "-lvwfmgd3ir8",
+    "logName": "projects/vidafarma-ia25/logs/cloudaudit.googleapis.com%2Fsystem_event",
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "methodName": "/Services.ReplaceService",
+      "resourceName": "namespaces/vidafarma-ia25/revisions/vidafarma-api-00028-rm4",
+      "response": {
+        "@type": "type.googleapis.com/google.cloud.run.v1.Revision",
+        "apiVersion": "serving.knative.dev/v1",
+        "kind": "Revision",
+        "metadata": {
+          "annotations": {
+            "autoscaling.knative.dev/maxScale": "3",
+            "run.googleapis.com/build-source-location": "{\"vidafarma-api-1\":\"gs://run-sources-vidafarma-ia25-southamerica-east1/services/vidafarma-api/1754524653.707603-a38a5e4d515648269da00649e5a0fc2c.zip#1754524654895380\"}",
+            "run.googleapis.com/client-name": "gcloud",
+            "run.googleapis.com/client-version": "532.0.0",
+            "run.googleapis.com/operation-id": "b8496549-f2df-41d1-89e3-8747aebb6fac",
+            "run.googleapis.com/startup-cpu-boost": "true",
+            "serving.knative.dev/creator": "luisomar07@gmail.com"
+          },
+          "creationTimestamp": "2025-08-06T23:58:18.391473Z",
+          "generation": 1,
+          "labels": {
+            "client.knative.dev/nonce": "vsvrdgkuce",
+            "cloud.googleapis.com/location": "southamerica-east1",
+            "run.googleapis.com/satisfiesPzs": "true",
+            "run.googleapis.com/startupProbeType": "Default",
+            "serving.knative.dev/configuration": "vidafarma-api",
+            "serving.knative.dev/configurationGeneration": "28",
+            "serving.knative.dev/service": "vidafarma-api",
+            "serving.knative.dev/serviceUid": "923e13b3-4a5d-4dce-9f26-f66675f9d95c"
+          },
+          "name": "vidafarma-api-00028-rm4",
+          "namespace": "963566180194",
+          "ownerReferences": [
+            {
+              "apiVersion": "serving.knative.dev/v1",
+              "blockOwnerDeletion": true,
+              "controller": true,
+              "kind": "Configuration",
+              "name": "vidafarma-api",
+              "uid": "a283e304-4e5a-4287-8b40-3d465a4ff244"
+            }
+          ],
+          "resourceVersion": "AAY7ux2TFms",
+          "selfLink": "/apis/serving.knative.dev/v1/namespaces/963566180194/revisions/vidafarma-api-00028-rm4",
+          "uid": "2c57ddda-3719-41d4-b0d9-9f13fc954430"
+        },
+        "spec": {
+          "containerConcurrency": 80,
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "ODOO_HOST",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "ODOO_HOST"
+                    }
+                  }
+                },
+                {
+                  "name": "ODOO_PORT",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "ODOO_PORT"
+                    }
+                  }
+                },
+                {
+                  "name": "ODOO_DB",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "ODOO_DB"
+                    }
+                  }
+                },
+                {
+                  "name": "ODOO_USER",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "ODOO_USER"
+                    }
+                  }
+                },
+                {
+                  "name": "ODOO_PASSWORD",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "ODOO_PASSWORD"
+                    }
+                  }
+                },
+                {
+                  "name": "FIREBASE_CLIENT_ID",
+                  "valueFrom": {
+                    "secretKeyRef": {
+                      "key": "latest",
+                      "name": "FIREBASE_CLIENT_ID"
+                    }
+                  }
+                }
+              ],
+              "image": "southamerica-east1-docker.pkg.dev/vidafarma-ia25/cloud-run-source-deploy/vidafarma-api@sha256:737d3eb8a3d7f0c51c7d8144393d3a6e0c6a0da89cd238d64a4f4848d6c8cdb6",
+              "name": "vidafarma-api-1",
+              "ports": [
+                {
+                  "containerPort": 8080,
+                  "name": "http1"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "1000m",
+                  "memory": "512Mi"
+                }
+              },
+              "startupProbe": {
+                "failureThreshold": 1,
+                "periodSeconds": 240,
+                "tcpSocket": {
+                  "port": 8080
+                },
+                "timeoutSeconds": 240
+              }
+            }
+          ],
+          "serviceAccountName": "963566180194-compute@developer.gserviceaccount.com",
+          "timeoutSeconds": 300
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2025-08-06T23:58:21.365867Z",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2025-08-06T23:58:21.305363Z",
+              "message": "Container image import completed in 2.4s.",
+              "status": "True",
+              "type": "ContainerReady"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "imageDigest": "southamerica-east1-docker.pkg.dev/vidafarma-ia25/cloud-run-source-deploy/vidafarma-api@sha256:737d3eb8a3d7f0c51c7d8144393d3a6e0c6a0da89cd238d64a4f4848d6c8cdb6",
+              "name": "vidafarma-api-1"
+            }
+          ],
+          "imageDigest": "southamerica-east1-docker.pkg.dev/vidafarma-ia25/cloud-run-source-deploy/vidafarma-api@sha256:737d3eb8a3d7f0c51c7d8144393d3a6e0c6a0da89cd238d64a4f4848d6c8cdb6",
+          "logUrl": "https://console.cloud.google.com/logs/viewer?project=vidafarma-ia25&resource=cloud_run_revision/service_name/vidafarma-api/revision_name/vidafarma-api-00028-rm4&advancedFilter=resource.type%3D%22cloud_run_revision%22%0Aresource.labels.service_name%3D%22vidafarma-api%22%0Aresource.labels.revision_name%3D%22vidafarma-api-00028-rm4%22",
+          "observedGeneration": 1
+        }
+      },
+      "serviceName": "run.googleapis.com",
+      "status": {
+        "message": "Ready condition status changed to True for Revision vidafarma-api-00028-rm4."
+      }
+    },
+    "receiveTimestamp": "2025-08-06T23:58:22.178288809Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "vidafarma-api",
+        "location": "southamerica-east1",
+        "project_id": "vidafarma-ia25",
+        "revision_name": "vidafarma-api-00028-rm4",
+        "service_name": ""
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "INFO",
+    "timestamp": "2025-08-06T23:58:21.380482Z"
+  },
+  {
+    "insertId": "1pc7ex2d8mcs",
+    "logName": "projects/vidafarma-ia25/logs/cloudaudit.googleapis.com%2Factivity",
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "luisomar07@gmail.com",
+        "principalSubject": "user:luisomar07@gmail.com"
+      },
+      "authorizationInfo": [
+        {
+          "granted": true,
+          "permission": "run.services.setIamPolicy",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/vidafarma-ia25/locations/southamerica-east1/services/vidafarma-api",
+          "resourceAttributes": {}
+        },
+        {
+          "granted": true,
+          "permission": "run.services.setIamPolicy",
+          "permissionType": "ADMIN_WRITE",
+          "resourceAttributes": {}
+        }
+      ],
+      "methodName": "google.cloud.run.v1.Services.SetIamPolicy",
+      "request": {
+        "@type": "type.googleapis.com/google.iam.v1.SetIamPolicyRequest",
+        "policy": {
+          "bindings": [
+            {
+              "members": [
+                "allUsers"
+              ],
+              "role": "roles/run.invoker"
+            }
+          ],
+          "etag": "BwY7uw2QRsQ="
+        },
+        "resource": "projects/vidafarma-ia25/locations/southamerica-east1/services/vidafarma-api"
+      },
+      "requestMetadata": {
+        "callerIp": "2800:cd0:7029:3800:1020:9d66:34c6:31da",
+        "callerSuppliedUserAgent": "google-cloud-sdk gcloud/532.0.0 command/gcloud.run.deploy invocation-id/eb760a29524949dca7c8698b918d7c6e environment/None environment-version/None client-os/WINDOWS client-os-ver/10.0.26100 client-pltf-arch/x86_64 interactive/False from-script/False python/3.12.10 term/ (Windows NT 10.0.26100),gzip(gfe)",
+        "destinationAttributes": {},
+        "requestAttributes": {
+          "auth": {},
+          "time": "2025-08-06T23:58:21.228046Z"
+        }
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "southamerica-east1"
+        ]
+      },
+      "resourceName": "projects/vidafarma-ia25/locations/southamerica-east1/services/vidafarma-api",
+      "serviceName": "run.googleapis.com"
+    },
+    "receiveTimestamp": "2025-08-06T23:58:21.970351658Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "",
+        "location": "southamerica-east1",
+        "project_id": "vidafarma-ia25",
+        "revision_name": "",
+        "service_name": ""
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "NOTICE",
+    "timestamp": "2025-08-06T23:58:20.530081Z"
+  },
+  {
+    "insertId": "1espk1ye2wtgo",
+    "logName": "projects/vidafarma-ia25/logs/cloudaudit.googleapis.com%2Factivity",
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "luisomar07@gmail.com"
+      },
+      "authorizationInfo": [
+        {
+          "granted": true,
+          "permission": "iam.serviceAccounts.actAs",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/-/serviceAccounts/963566180194-compute@developer.gserviceaccount.com"
+        }
+      ],
+      "methodName": "iam.serviceAccounts.actAs",
+      "request": {
+        "@type": "type.googleapis.com/CanActAsServiceAccountRequest",
+        "name": "963566180194-compute@developer.gserviceaccount.com",
+        "project_number": "963566180194"
+      },
+      "resourceName": "projects/-/serviceAccounts/963566180194-compute@developer.gserviceaccount.com",
+      "response": {
+        "@type": "type.googleapis.com/CanActAsServiceAccountResponse",
+        "success": true
+      },
+      "serviceName": "iam.googleapis.com"
+    },
+    "receiveTimestamp": "2025-08-06T23:58:18.777811712Z",
+    "resource": {
+      "labels": {
+        "method": "iam.serviceAccounts.actAs",
+        "project_id": "vidafarma-ia25",
+        "service": "iam.googleapis.com"
+      },
+      "type": "audited_resource"
+    },
+    "severity": "NOTICE",
+    "timestamp": "2025-08-06T23:58:18.777811712Z"
+  },
+  {
+    "insertId": "1ulwbumda4bg",
+    "logName": "projects/vidafarma-ia25/logs/cloudaudit.googleapis.com%2Factivity",
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "luisomar07@gmail.com",
+        "principalSubject": "user:luisomar07@gmail.com"
+      },
+      "authorizationInfo": [
+        {
+          "granted": true,
+          "permission": "run.services.update",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "namespaces/vidafarma-ia25/services/vidafarma-api",
+          "resourceAttributes": {}
+        },
+        {
+          "granted": true,
+          "permission": "run.services.update",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "namespaces/vidafarma-ia25/services/vidafarma-api",
+          "resourceAttributes": {
+            "name": "namespaces/vidafarma-ia25/services/vidafarma-api",
+            "service": "run.googleapis.com/",
+            "type": "run.googleapis.com/Service"
+          }
+        }
+      ],
+      "methodName": "google.cloud.run.v1.Services.ReplaceService",
+      "request": {
+        "@type": "type.googleapis.com/google.cloud.run.v1.ReplaceServiceRequest",
+        "name": "namespaces/vidafarma-ia25/services/vidafarma-api",
+        "service": {
+          "apiVersion": "serving.knative.dev/v1",
+          "kind": "Service",
+          "metadata": {
+            "annotations": {
+              "run.googleapis.com/build-enable-automatic-updates": "false",
+              "run.googleapis.com/build-id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+              "run.googleapis.com/build-image-uri": "southamerica-east1-docker.pkg.dev/vidafarma-ia25/cloud-run-source-deploy/vidafarma-api",
+              "run.googleapis.com/build-name": "projects/963566180194/locations/southamerica-east1/builds/e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+              "run.googleapis.com/build-source-location": "gs://run-sources-vidafarma-ia25-southamerica-east1/services/vidafarma-api/1754524653.707603-a38a5e4d515648269da00649e5a0fc2c.zip#1754524654895380",
+              "run.googleapis.com/client-name": "gcloud",
+              "run.googleapis.com/client-version": "532.0.0",
+              "run.googleapis.com/ingress": "all",
+              "run.googleapis.com/ingress-status": "all",
+              "run.googleapis.com/operation-id": "4b7e2079-4af0-4745-9817-d62a3e9c0780",
+              "run.googleapis.com/urls": "[\"https://vidafarma-api-963566180194.southamerica-east1.run.app\",\"https://vidafarma-api-pu7gdmhp7a-rj.a.run.app\"]",
+              "serving.knative.dev/creator": "luisomar07@gmail.com",
+              "serving.knative.dev/lastModifier": "luisomar07@gmail.com"
+            },
+            "creationTimestamp": "2025-08-01T23:38:57.165933Z",
+            "generation": 27,
+            "labels": {
+              "cloud.googleapis.com/location": "southamerica-east1",
+              "run.googleapis.com/satisfiesPzs": "true"
+            },
+            "name": "vidafarma-api",
+            "namespace": "963566180194",
+            "resourceVersion": "AAY7uw3piDs",
+            "selfLink": "/apis/serving.knative.dev/v1/namespaces/963566180194/services/vidafarma-api",
+            "uid": "923e13b3-4a5d-4dce-9f26-f66675f9d95c"
+          },
+          "spec": {
+            "template": {
+              "metadata": {
+                "annotations": {
+                  "autoscaling.knative.dev/maxScale": "3",
+                  "run.googleapis.com/client-name": "gcloud",
+                  "run.googleapis.com/client-version": "532.0.0",
+                  "run.googleapis.com/startup-cpu-boost": "true"
+                },
+                "labels": {
+                  "client.knative.dev/nonce": "vsvrdgkuce",
+                  "run.googleapis.com/startupProbeType": "Default"
+                }
+              },
+              "spec": {
+                "containerConcurrency": 80,
+                "containers": [
+                  {
+                    "image": "southamerica-east1-docker.pkg.dev/vidafarma-ia25/cloud-run-source-deploy/vidafarma-api@sha256:737d3eb8a3d7f0c51c7d8144393d3a6e0c6a0da89cd238d64a4f4848d6c8cdb6",
+                    "resources": {
+                      "limits": {
+                        "cpu": "1000m",
+                        "memory": "512Mi"
+                      }
+                    }
+                  }
+                ],
+                "serviceAccountName": "963566180194-compute@developer.gserviceaccount.com",
+                "timeoutSeconds": 300
+              }
+            },
+            "traffic": [
+              {
+                "latestRevision": true,
+                "percent": 100
+              }
+            ]
+          },
+          "status": {
+            "conditions": [
+              {
+                "lastTransitionTime": "2025-08-06T23:53:58.595643Z",
+                "status": "True",
+                "type": "Ready"
+              },
+              {
+                "lastTransitionTime": "2025-08-06T23:53:57.787160Z",
+                "status": "True",
+                "type": "ConfigurationsReady"
+              },
+              {
+                "lastTransitionTime": "2025-08-06T23:53:58.562443Z",
+                "status": "True",
+                "type": "RoutesReady"
+              }
+            ],
+            "latestCreatedRevisionName": "vidafarma-api-00027-6x7",
+            "latestReadyRevisionName": "vidafarma-api-00027-6x7",
+            "observedGeneration": 27,
+            "traffic": [
+              {
+                "latestRevision": true,
+                "percent": 100,
+                "revisionName": "vidafarma-api-00027-6x7"
+              }
+            ],
+            "url": "https://vidafarma-api-pu7gdmhp7a-rj.a.run.app"
+          }
+        }
+      },
+      "requestMetadata": {
+        "callerIp": "2800:cd0:7029:3800:1020:9d66:34c6:31da",
+        "callerSuppliedUserAgent": "google-cloud-sdk gcloud/532.0.0 command/gcloud.run.deploy invocation-id/eb760a29524949dca7c8698b918d7c6e environment/None environment-version/None client-os/WINDOWS client-os-ver/10.0.26100 client-pltf-arch/x86_64 interactive/False from-script/False python/3.12.10 term/ (Windows NT 10.0.26100),gzip(gfe)",
+        "destinationAttributes": {},
+        "requestAttributes": {
+          "auth": {},
+          "time": "2025-08-06T23:58:18.350531Z"
+        }
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "southamerica-east1"
+        ]
+      },
+      "resourceName": "namespaces/vidafarma-ia25/services/vidafarma-api",
+      "serviceName": "run.googleapis.com"
+    },
+    "receiveTimestamp": "2025-08-06T23:58:18.848467828Z",
+    "resource": {
+      "labels": {
+        "configuration_name": "",
+        "location": "southamerica-east1",
+        "project_id": "vidafarma-ia25",
+        "revision_name": "",
+        "service_name": "vidafarma-api"
+      },
+      "type": "cloud_run_revision"
+    },
+    "severity": "NOTICE",
+    "timestamp": "2025-08-06T23:58:17.562284Z"
+  },
+  {
+    "insertId": "fk5nydd1joq",
+    "logName": "projects/vidafarma-ia25/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "operations/build/vidafarma-ia25/ZTRjZjdkMDUtNzhhMC00MzAzLWFmZjctMGI0ODZkNjRiOWZh",
+      "last": true,
+      "producer": "cloudbuild.googleapis.com"
+    },
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "authenticationInfo": {
+        "principalEmail": "luisomar07@gmail.com",
+        "principalSubject": "user:luisomar07@gmail.com"
+      },
+      "authorizationInfo": [
+        {
+          "granted": true,
+          "permission": "cloudbuild.builds.create",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/vidafarma-ia25",
+          "resourceAttributes": {
+            "name": "projects/vidafarma-ia25/locations/southamerica-east1/builds",
+            "service": "cloudbuild.googleapis.com",
+            "type": "cloudbuild.googleapis.com/Build"
+          }
+        }
+      ],
+      "methodName": "google.devtools.cloudbuild.v1.CloudBuild.CreateBuild",
+      "requestMetadata": {
+        "destinationAttributes": {},
+        "requestAttributes": {}
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "southamerica-east1"
+        ]
+      },
+      "resourceName": "projects/vidafarma-ia25/builds",
+      "serviceName": "cloudbuild.googleapis.com",
+      "status": {}
+    },
+    "receiveTimestamp": "2025-08-06T23:58:08.513852478Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "NOTICE",
+    "timestamp": "2025-08-06T23:58:08.376161Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-191",
+    "labels": {
+      "build_step": "MAIN",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:58:08.202840400Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "DONE",
+    "timestamp": "2025-08-06T23:58:08.099802054Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-190",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:58:08.202840400Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "latest: digest: sha256:737d3eb8a3d7f0c51c7d8144393d3a6e0c6a0da89cd238d64a4f4848d6c8cdb6 size: 1994",
+    "timestamp": "2025-08-06T23:58:07.879581955Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-189",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:58:07.475464240Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "7cc7fe68eff6: Pushed",
+    "timestamp": "2025-08-06T23:58:06.630557062Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-188",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:58:02.472512737Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "83c234da356e: Pushed",
+    "timestamp": "2025-08-06T23:58:02.002696668Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-187",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:58:01.473371359Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "24ce398c7899: Pushed",
+    "timestamp": "2025-08-06T23:58:00.708367855Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-186",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:58:01.473371359Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "10a221a2d521: Pushed",
+    "timestamp": "2025-08-06T23:58:00.708357374Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-185",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:58:01.473371359Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "b502b426cd1a: Pushed",
+    "timestamp": "2025-08-06T23:58:00.706461510Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-184",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:58:00.470878387Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "0a00f6ce5fb7: Layer already exists",
+    "timestamp": "2025-08-06T23:57:59.805650807Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-183",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:58:00.470878387Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "943faa7467a0: Layer already exists",
+    "timestamp": "2025-08-06T23:57:59.714138787Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-182",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:58:00.470878387Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "d22cc68b10d7: Layer already exists",
+    "timestamp": "2025-08-06T23:57:59.608476057Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-181",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:59.482277225Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "7cc7fe68eff6: Waiting",
+    "timestamp": "2025-08-06T23:57:59.406095279Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-180",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:59.482277225Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "0a00f6ce5fb7: Waiting",
+    "timestamp": "2025-08-06T23:57:59.406094610Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-179",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:59.482277225Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "943faa7467a0: Waiting",
+    "timestamp": "2025-08-06T23:57:59.406088289Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-178",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:59.482277225Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "7cc7fe68eff6: Preparing",
+    "timestamp": "2025-08-06T23:57:59.405738144Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-177",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:59.482277225Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "0a00f6ce5fb7: Preparing",
+    "timestamp": "2025-08-06T23:57:59.405737894Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-176",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:59.482277225Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "943faa7467a0: Preparing",
+    "timestamp": "2025-08-06T23:57:59.405737604Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-175",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:59.482277225Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "d22cc68b10d7: Preparing",
+    "timestamp": "2025-08-06T23:57:59.405737234Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-174",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:59.482277225Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "24ce398c7899: Preparing",
+    "timestamp": "2025-08-06T23:57:59.405736994Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-173",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:59.482277225Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "10a221a2d521: Preparing",
+    "timestamp": "2025-08-06T23:57:59.405736634Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-172",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:59.482277225Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "83c234da356e: Preparing",
+    "timestamp": "2025-08-06T23:57:59.405735794Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-171",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:59.482277225Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "b502b426cd1a: Preparing",
+    "timestamp": "2025-08-06T23:57:59.405722603Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-170",
+    "labels": {
+      "build_step": "PUSH:STDOUT",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:59.482277225Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "The push refers to repository [southamerica-east1-docker.pkg.dev/vidafarma-ia25/cloud-run-source-deploy/vidafarma-api]",
+    "timestamp": "2025-08-06T23:57:59.341071253Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-169",
+    "labels": {
+      "build_step": "MAIN",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:59.482277225Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Pushing southamerica-east1-docker.pkg.dev/vidafarma-ia25/cloud-run-source-deploy/vidafarma-api:latest",
+    "timestamp": "2025-08-06T23:57:58.687752076Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-168",
+    "labels": {
+      "build_step": "MAIN",
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:59.482277225Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "PUSH",
+    "timestamp": "2025-08-06T23:57:58.687739415Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-167",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Successfully tagged southamerica-east1-docker.pkg.dev/vidafarma-ia25/cloud-run-source-deploy/vidafarma-api:latest",
+    "timestamp": "2025-08-06T23:57:58.459549304Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-166",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Successfully built eef1ca427109",
+    "timestamp": "2025-08-06T23:57:58.451383896Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-165",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": " ---> eef1ca427109",
+    "timestamp": "2025-08-06T23:57:58.450477312Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-164",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Removing intermediate container 168ac885aa53",
+    "timestamp": "2025-08-06T23:57:58.450462181Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-163",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": " ---> Running in 168ac885aa53",
+    "timestamp": "2025-08-06T23:57:58.369466445Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-162",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Step 8/8 : LABEL google.source=gs://run-sources-vidafarma-ia25-southamerica-east1/services/vidafarma-api/1754524653.707603-a38a5e4d515648269da00649e5a0fc2c.zip#1754524654895380",
+    "timestamp": "2025-08-06T23:57:58.338176883Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-161",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": " ---> 437d4448013f",
+    "timestamp": "2025-08-06T23:57:58.338164102Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-160",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Removing intermediate container 979c4d392622",
+    "timestamp": "2025-08-06T23:57:58.338137830Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-159",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": " ---> Running in 979c4d392622",
+    "timestamp": "2025-08-06T23:57:58.259599788Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-158",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Step 7/8 : LABEL google.build_id=e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+    "timestamp": "2025-08-06T23:57:58.227337767Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-157",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": " ---> eebb284b16a1",
+    "timestamp": "2025-08-06T23:57:58.227334056Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-156",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Removing intermediate container 1af7bc3cd06b",
+    "timestamp": "2025-08-06T23:57:58.227313465Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-155",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": " ---> Running in 1af7bc3cd06b",
+    "timestamp": "2025-08-06T23:57:58.145916301Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-154",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Step 6/8 : CMD uvicorn main:app --host 0.0.0.0 --port $PORT",
+    "timestamp": "2025-08-06T23:57:58.110265650Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-153",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": " ---> 98877f807226",
+    "timestamp": "2025-08-06T23:57:58.110251349Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-152",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Step 5/8 : COPY app/ .",
+    "timestamp": "2025-08-06T23:57:57.985486979Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-151",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": " ---> 1c1ea9fa916f",
+    "timestamp": "2025-08-06T23:57:57.985484949Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-150",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:58.473846211Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "\u001b[0mRemoving intermediate container 3ea67be76486",
+    "timestamp": "2025-08-06T23:57:57.985469238Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-149",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:56.472735798Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "[notice] To update, run: pip install --upgrade pip",
+    "timestamp": "2025-08-06T23:57:56.153173942Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-148",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:56.472735798Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "[notice] A new release of pip is available: 24.0 -> 25.2",
+    "timestamp": "2025-08-06T23:57:56.153172432Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-147",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:56.472735798Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "\u001b[0m\u001b[91m",
+    "timestamp": "2025-08-06T23:57:56.153156861Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-146",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:56.472735798Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "\u001b[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv",
+    "timestamp": "2025-08-06T23:57:56.038309612Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-145",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:56.472735798Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Successfully installed annotated-types-0.7.0 anyio-4.10.0 cachetools-5.5.2 certifi-2025.8.3 charset_normalizer-3.4.2 click-8.2.1 fastapi-0.116.1 google-auth-2.40.3 h11-0.16.0 idna-3.10 pyasn1-0.6.1 pyasn1-modules-0.4.2 pydantic-2.11.7 pydantic-core-2.33.2 python-dotenv-1.1.1 requests-2.32.4 rsa-4.9.1 sniffio-1.3.1 starlette-0.47.2 typing-extensions-4.14.1 typing-inspection-0.4.1 urllib3-2.5.0 uvicorn-0.35.0",
+    "timestamp": "2025-08-06T23:57:56.037893062Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-144",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Installing collected packages: urllib3, typing-extensions, sniffio, python-dotenv, pyasn1, idna, h11, click, charset_normalizer, certifi, cachetools, annotated-types, uvicorn, typing-inspection, rsa, requests, pydantic-core, pyasn1-modules, anyio, starlette, pydantic, google-auth, fastapi",
+    "timestamp": "2025-08-06T23:57:54.368343542Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-143",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)",
+    "timestamp": "2025-08-06T23:57:54.212031002Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-142",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading typing_inspection-0.4.1-py3-none-any.whl (14 kB)",
+    "timestamp": "2025-08-06T23:57:54.206307467Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-141",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ???????????????????????????????????????? 83.1/83.1 kB 198.5 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:54.200660908Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-140",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading pyasn1-0.6.1-py3-none-any.whl (83 kB)",
+    "timestamp": "2025-08-06T23:57:54.196596731Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-139",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ??????????????????????????????????????? 107.2/107.2 kB 181.3 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:54.190998545Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-138",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading anyio-4.10.0-py3-none-any.whl (107 kB)",
+    "timestamp": "2025-08-06T23:57:54.187378279Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-137",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)",
+    "timestamp": "2025-08-06T23:57:54.182228235Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-136",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ??????????????????????????????????????? 129.8/129.8 kB 241.9 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:54.177039548Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-135",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading urllib3-2.5.0-py3-none-any.whl (129 kB)",
+    "timestamp": "2025-08-06T23:57:54.173523689Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-134",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ???????????????????????????????????????? 43.9/43.9 kB 187.7 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:54.168340673Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-133",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading typing_extensions-4.14.1-py3-none-any.whl (43 kB)",
+    "timestamp": "2025-08-06T23:57:54.165633942Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-132",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ???????????????????????????????????????? 73.0/73.0 kB 211.6 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:54.160010684Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-131",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading starlette-0.47.2-py3-none-any.whl (72 kB)",
+    "timestamp": "2025-08-06T23:57:54.156245618Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-130",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading rsa-4.9.1-py3-none-any.whl (34 kB)",
+    "timestamp": "2025-08-06T23:57:54.150831705Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-129",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ???????????????????????????????????????? 2.0/2.0 MB 100.9 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:54.144973641Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-128",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading pydantic_core-2.33.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.0 MB)",
+    "timestamp": "2025-08-06T23:57:54.121976005Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-127",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ???????????????????????????????????????? 444.8/444.8 kB 82.2 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:54.109127747Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-126",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading pydantic-2.11.7-py3-none-any.whl (444 kB)",
+    "timestamp": "2025-08-06T23:57:54.100267870Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-125",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ???????????????????????????????????????? 181.3/181.3 kB 86.4 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:54.092636781Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-124",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading pyasn1_modules-0.4.2-py3-none-any.whl (181 kB)",
+    "timestamp": "2025-08-06T23:57:54.087280382Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-123",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ???????????????????????????????????????? 70.4/70.4 kB 159.2 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:54.082492714Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-122",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading idna-3.10-py3-none-any.whl (70 kB)",
+    "timestamp": "2025-08-06T23:57:54.079000277Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-121",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading h11-0.16.0-py3-none-any.whl (37 kB)",
+    "timestamp": "2025-08-06T23:57:54.074020535Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-120",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ??????????????????????????????????????? 102.2/102.2 kB 207.1 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:54.069116598Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-119",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading click-8.2.1-py3-none-any.whl (102 kB)",
+    "timestamp": "2025-08-06T23:57:54.065220503Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-118",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ???????????????????????????????????????? 147.3/147.3 kB 93.6 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:54.060026496Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-117",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading charset_normalizer-3.4.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (147 kB)",
+    "timestamp": "2025-08-06T23:57:54.055155011Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-116",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ??????????????????????????????????????? 161.2/161.2 kB 257.1 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:54.048240943Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-115",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading certifi-2025.8.3-py3-none-any.whl (161 kB)",
+    "timestamp": "2025-08-06T23:57:54.044323046Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-114",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading cachetools-5.5.2-py3-none-any.whl (10 kB)",
+    "timestamp": "2025-08-06T23:57:54.036645453Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-113",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ???????????????????????????????????????? 64.8/64.8 kB 183.4 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:54.025974778Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-112",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading requests-2.32.4-py3-none-any.whl (64 kB)",
+    "timestamp": "2025-08-06T23:57:54.022288257Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-111",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading python_dotenv-1.1.1-py3-none-any.whl (20 kB)",
+    "timestamp": "2025-08-06T23:57:54.015319245Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-110",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ???????????????????????????????????????? 216.1/216.1 kB 81.8 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:54.008273577Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-109",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading google_auth-2.40.3-py2.py3-none-any.whl (216 kB)",
+    "timestamp": "2025-08-06T23:57:54.002157374Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-108",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ???????????????????????????????????????? 66.4/66.4 kB 192.1 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:53.997157031Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-107",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading uvicorn-0.35.0-py3-none-any.whl (66 kB)",
+    "timestamp": "2025-08-06T23:57:53.993139067Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-106",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "   ???????????????????????????????????????? 95.6/95.6 kB 231.8 MB/s eta 0:00:00",
+    "timestamp": "2025-08-06T23:57:53.986120091Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-105",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "Downloading fastapi-0.116.1-py3-none-any.whl (95 kB)",
+    "timestamp": "2025-08-06T23:57:53.982787285Z"
+  },
+  {
+    "insertId": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa-104",
+    "labels": {
+      "build_tags": "p-run,r-docker,bt-DOCKER,service_vidafarma-api"
+    },
+    "logName": "projects/vidafarma-ia25/logs/cloudbuild",
+    "receiveTimestamp": "2025-08-06T23:57:54.493377555Z",
+    "resource": {
+      "labels": {
+        "build_id": "e4cf7d05-78a0-4303-aff7-0b486d64b9fa",
+        "build_trigger_id": "",
+        "project_id": "vidafarma-ia25"
+      },
+      "type": "build"
+    },
+    "severity": "INFO",
+    "textPayload": "  Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)",
+    "timestamp": "2025-08-06T23:57:53.951042501Z"
+  }
+]
