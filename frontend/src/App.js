@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BarcodeScanner } from './components/BarcodeScanner';
-import { auth, googleProvider } from './firebase'; // Importar desde firebase.js
+import { auth, googleProvider } from './firebase';
+import useSpeechRecognition from './hooks/useSpeechRecognition';
 import { signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8000';
@@ -18,9 +19,18 @@ async function getAuthToken() {
 function App() {
   const [user, setUser] = useState(null); // Estado para el usuario
   const [consulta, setConsulta] = useState('');
-  const [respuesta, setRespuesta] = useState('');
-  const [isListening, setIsListening] = useState(false);
+  const [respuesta, setRespuesta] = useState('');  
   const [isScanning, setIsScanning] = useState(false);
+  const [productName, setProductName] = useState('');
+  const [isTtsEnabled, setIsTtsEnabled] = useState(true); // Estado para controlar el TTS
+
+  // --- Hook de Reconocimiento de Voz ---
+  const {
+    isListening,
+    transcript,
+    startListening,
+    stopListening
+  } = useSpeechRecognition();
 
   // --- Efecto para observar cambios en la autenticación ---
   useEffect(() => {
@@ -30,6 +40,33 @@ function App() {
     // Limpiar el observador al desmontar el componente
     return () => unsubscribe();
   }, []);
+
+  // --- Efecto para actualizar la consulta desde la transcripción de voz ---
+  useEffect(() => {
+    if (transcript) {
+      setConsulta(transcript);
+    }
+  }, [transcript]);
+
+  // --- Efecto para enviar la consulta automáticamente después de hablar ---
+  useEffect(() => {
+    if (!isListening && transcript) {
+      handleConsulta();
+    }
+  }, [isListening, transcript]); // Se ejecuta cuando isListening cambia a false
+
+  // --- Efecto para la Síntesis de Voz (TTS) ---
+  useEffect(() => {
+    // Si el TTS está activado, hay una respuesta y el navegador lo soporta...
+    if (isTtsEnabled && respuesta && window.speechSynthesis) {
+      // Detiene cualquier locución anterior para evitar solapamientos
+      window.speechSynthesis.cancel(); 
+      
+      const utterance = new SpeechSynthesisUtterance(respuesta);
+      utterance.lang = 'es-ES'; // Configura el idioma a español
+      window.speechSynthesis.speak(utterance);
+    }
+  }, [respuesta, isTtsEnabled]); // Se ejecuta cada vez que la respuesta o el estado del TTS cambian
 
   // --- Funciones de Autenticación ---
   const handleLogin = async () => {
@@ -77,6 +114,36 @@ function App() {
     }
   };
 
+   const handleSearchProduct = async () => {
+        if (!productName.trim()) return;
+
+        try {
+            const token = await getAuthToken();
+            console.log('Buscando producto:', productName);
+            const response = await fetch(`${API_BASE_URL}/api/odoo/product/name/${encodeURIComponent(productName)}`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`Error HTTP: ${response.status}`);
+            }
+
+            const data = await response.json();
+            setRespuesta(`Producto encontrado: ${data.name} - Precio: S/ ${data.list_price.toFixed(2)} - Stock: ${data.qty_available}`);
+            setProductName(''); // Limpiar el campo de búsqueda después de encontrar el producto
+
+        } catch (error) {
+            console.error("Error al buscar producto por nombre:", error);
+            setRespuesta('Producto no encontrado con ese nombre.');
+        }
+    };
+
+
+
+
   const handleBarcodeScan = async (barcode) => {
     setIsScanning(false);
     try {
@@ -121,6 +188,12 @@ function App() {
         <div className="user-info">
           <span>Hola, {user.displayName}</span>
           <button onClick={handleLogout} className="logout-button">Cerrar Sesión</button>
+          <button 
+            onClick={() => setIsTtsEnabled(!isTtsEnabled)} 
+            className={`tts-toggle-button ${isTtsEnabled ? 'enabled' : ''}`}
+            title={isTtsEnabled ? 'Desactivar voz de respuesta' : 'Activar voz de respuesta'}>
+            {isTtsEnabled ? '🔊' : '🔇'}
+          </button>
         </div>
       </header>
       
@@ -147,12 +220,11 @@ function App() {
                 className="consulta-input"
               />
               <button
-                onClick={() => { /* Lógica de reconocimiento de voz */ }}
-                disabled={isListening}
+                onClick={isListening ? stopListening : startListening}
                 className={`mic-button ${isListening ? 'listening' : ''}`}
-                aria-label="Iniciar reconocimiento de voz"
+                aria-label="Iniciar/Detener reconocimiento de voz"
               >
-                {isListening ? '... 🎤' : '🎤'}
+                {isListening ? '🔴 🎤' : '🎤'}
               </button>
               <button onClick={() => setIsScanning(true)} className="scan-button">📷</button>
             </div>
@@ -161,6 +233,23 @@ function App() {
               Enviar
             </button>
             
+             <div className="search-product-container">
+                    <h2>Buscar producto por nombre:</h2>
+                    <div className="input-group">
+                        <input
+                            type="text"
+                            value={productName}
+                            onChange={(e) => setProductName(e.target.value)}
+                            onKeyPress={(e) => e.key === 'Enter' && handleSearchProduct()}
+                            placeholder="Nombre del producto..."
+                            className="consulta-input"
+                        />
+                        <button onClick={handleSearchProduct} className="send-button" disabled={!productName.trim()}>
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+
             {respuesta && (
               <div className="respuesta-container">
                 <h3>Respuesta:</h3>
@@ -172,7 +261,7 @@ function App() {
       </main>
 
       <footer className="App-footer">
-        <p>Desarrollado con IA</p>
+        <p>Desarrollado para Vidafarma</p>
       </footer>
     </div>
   );
