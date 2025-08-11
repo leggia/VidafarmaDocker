@@ -126,13 +126,20 @@ def find_product_by_barcode(barcode: str):
     return products[0] if products else None
 
 def find_product_by_name(name: str):
-    return execute_odoo_kw(
+    # Usar % para búsqueda parcial
+    search_name = f"%{name}%"
+    products = execute_odoo_kw(
         model='product.product',
         method='search_read',
-        args=[[['name', 'ilike', name]]],
-        kwargs={'fields': ['id', 'name', 'list_price', 'qty_available'], 'limit': 1},
+        args=[[['name', 'ilike', search_name]]],
+        kwargs={
+            'fields': ['id', 'name', 'list_price', 'qty_available'],
+            'limit': 1,
+            'order': 'name'
+        },
         cache_key=f"product_name_search_{name}"
     )
+    return products[0] if products else None
 
 def create_stock_movement(product_id: int, quantity: float, source_location_id: int, destination_location_id: int):
     return execute_odoo_kw(

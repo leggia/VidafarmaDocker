@@ -46,6 +46,18 @@ class StockMovementCreate(BaseModel):
     source_location_id: int
     destination_location_id: int
 
+# Rutas para productos
+@app.get("/api/odoo/product/name/{name}")
+async def get_product_by_name(name: str, user = Depends(verify_firebase_token)):
+    try:
+        product = find_product_by_name(name)
+        if not product:
+            raise HTTPException(status_code=404, detail="Producto no encontrado")
+        return product
+    except Exception as e:
+        logger.error(f"Error buscando producto por nombre: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
+
 # --- Action Dispatcher --- 
 def execute_action(nlu_result: dict):
     """Ejecuta la acción correspondiente basada en la intención y entidades."""
